@@ -3,14 +3,23 @@ using Akka.Actor;
 
 var system = ActorSystem.Create("MySystem");
 var greeter = system.ActorOf<GreetingActor>("greeter");
-greeter.Tell(new Greet("Hello World"));
-
+greeter.Tell(new Greet2("Hello World"));
+Console.WriteLine(Thread.CurrentThread.ManagedThreadId);
 Console.Read();
 
 
 public class Greet
 {
     public Greet(string who)
+    {
+        Who = who;
+    }
+    public string Who { get; private set; }
+}
+
+public class Greet2
+{
+    public Greet2(string who)
     {
         Who = who;
     }
